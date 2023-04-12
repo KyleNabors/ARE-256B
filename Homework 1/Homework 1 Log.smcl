@@ -1,0 +1,952 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kylenabors/Library/CloudStorage/Dropbox/UC Davis/Winter 2023/ECN 256B/Homework/Homework 1/Homework 1 Log.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}30 Jan 2023, 12:32:20
+
+{com}. do "/Users/kylenabors/Library/CloudStorage/Dropbox/UC Davis/Winter 2023/ECN 256B/Homework/Homework 1/Homework 1.do"
+{txt}
+{com}. clear all
+{res}{txt}
+{com}. 
+. *ssc install estout, replace
+. 
+. set seed 8675309
+{txt}
+{com}. 
+. cd"/Users/kylenabors/Library/CloudStorage/Dropbox/UC Davis/Winter 2023/ECN 256B/Homework/Homework 1"
+{res}/Users/kylenabors/Library/CloudStorage/Dropbox/UC Davis/Winter 2023/ECN 256B/Homework/Homework 1
+{txt}
+{com}. 
+. use EAWE01.dta 
+{txt}
+{com}. 
+. replace URBAN=1 if URBAN==2
+{txt}(2 real changes made)
+
+{com}. 
+. *1.1
+. * Estimate linear probability model of being married based on AGE
+. regress MARRIED AGE, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}    11.83
+                                                {txt}Prob > F          = {res}    0.0006
+                                                {txt}R-squared         = {res}    0.0234
+                                                {txt}Root MSE          =    {res} .48589
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.206855{col 26}{space 2}  .467777{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 54}{space 4}-2.125914{col 67}{space 3}-.2877949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. * Estimate linear probability model of being married based on years of schooling
+. regress MARRIED S, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}     2.82
+                                                {txt}Prob > F          = {res}    0.0938
+                                                {txt}R-squared         = {res}    0.0055
+                                                {txt}Root MSE          =    {res} .49034
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2} .0130462{col 26}{space 2} .0077708{col 37}{space 1}    1.68{col 46}{space 3}0.094{col 54}{space 4}-.0022214{col 67}{space 3} .0283137
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2142045{col 26}{space 2} .1144794{col 37}{space 1}    1.87{col 46}{space 3}0.062{col 54}{space 4}-.0107175{col 67}{space 3} .4391266
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. *1.2
+. * Estimate probit model of being married based on AGE
+. probit MARRIED AGE, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-331.42563}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-331.42451}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-331.42451}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:11.38}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0007}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-331.42451}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0174}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .1449392{col 26}{space 2} .0429565{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0607461{col 67}{space 3} .2291323
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-4.437381{col 26}{space 2} 1.245308{col 37}{space 1}   -3.56{col 46}{space 3}0.000{col 54}{space 4}-6.878139{col 67}{space 3}-1.996623
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. * Estimate probit model of being married based on years of schooling
+. probit MARRIED S, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-335.93006}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-335.92997}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-335.92997}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:2.77}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0960}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-335.92997}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0041}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2}  .033938{col 26}{space 2} .0203872{col 37}{space 1}    1.66{col 46}{space 3}0.096{col 54}{space 4}-.0060201{col 67}{space 3} .0738961
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.7378423{col 26}{space 2} .3028775{col 37}{space 1}   -2.44{col 46}{space 3}0.015{col 54}{space 4}-1.331471{col 67}{space 3}-.1442133
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. *1.3 No Code
+. 
+. *1.4
+. * Married Age 
+. regress MARRIED AGE, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}    11.83
+                                                {txt}Prob > F          = {res}    0.0006
+                                                {txt}R-squared         = {res}    0.0234
+                                                {txt}Root MSE          =    {res} .48589
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.206855{col 26}{space 2}  .467777{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 54}{space 4}-2.125914{col 67}{space 3}-.2877949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict mar_age_lin
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. 
+. probit MARRIED AGE, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-331.42563}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-331.42451}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-331.42451}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:11.38}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0007}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-331.42451}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0174}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .1449392{col 26}{space 2} .0429565{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0607461{col 67}{space 3} .2291323
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-4.437381{col 26}{space 2} 1.245308{col 37}{space 1}   -3.56{col 46}{space 3}0.000{col 54}{space 4}-6.878139{col 67}{space 3}-1.996623
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict mar_age_prob
+{txt}(option {bf:pr} assumed; Pr(MARRIED))
+
+{com}. 
+. scatter MARRIED AGE || scatter mar_age_prob AGE || line mar_age_prob AGE || lfit MARRIED AGE,  title("AGE Linear and Probit Model")
+{res}{txt}
+{com}. 
+. * Married S 
+. regress MARRIED S, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}     2.82
+                                                {txt}Prob > F          = {res}    0.0938
+                                                {txt}R-squared         = {res}    0.0055
+                                                {txt}Root MSE          =    {res} .49034
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2} .0130462{col 26}{space 2} .0077708{col 37}{space 1}    1.68{col 46}{space 3}0.094{col 54}{space 4}-.0022214{col 67}{space 3} .0283137
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2142045{col 26}{space 2} .1144794{col 37}{space 1}    1.87{col 46}{space 3}0.062{col 54}{space 4}-.0107175{col 67}{space 3} .4391266
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict mar_s_lin
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. 
+. probit MARRIED S, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-335.93006}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-335.92997}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-335.92997}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:2.77}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0960}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-335.92997}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0041}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2}  .033938{col 26}{space 2} .0203872{col 37}{space 1}    1.66{col 46}{space 3}0.096{col 54}{space 4}-.0060201{col 67}{space 3} .0738961
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.7378423{col 26}{space 2} .3028775{col 37}{space 1}   -2.44{col 46}{space 3}0.015{col 54}{space 4}-1.331471{col 67}{space 3}-.1442133
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict mar_s_prob
+{txt}(option {bf:pr} assumed; Pr(MARRIED))
+
+{com}. 
+. scatter MARRIED S || scatter mar_s_prob S || line mar_s_prob S || lfit MARRIED S, title("Schooling Linear and Probit Model")
+{res}{txt}
+{com}. 
+. *1.5
+. *Generate Subsample
+. generate rand_draw = runiform()
+{txt}
+{com}. sort rand_draw
+{txt}
+{com}. generate subsample = _n <= 5
+{txt}
+{com}. 
+. *List if in subsample 
+. list ID AGE MARRIED mar_age_lin mar_age_prob if subsample==1
+{txt}
+     {c TLC}{hline 6}{c -}{hline 5}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res}  ID   AGE   MARRIED   mar_ag~n   mar_ag~b {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 5}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}4789    29         1   .4091265   .4074364 {txt}{c |}
+  2. {c |} {res}4204    27         0   .2976796   .3001313 {txt}{c |}
+  3. {c |} {res}5425    31         1   .5205736   .5222231 {txt}{c |}
+  4. {c |} {res}2524    29         0   .4091265   .4074364 {txt}{c |}
+  5. {c |} {res}6397    28         0   .3534031   .3523128 {txt}{c |}
+     {c BLC}{hline 6}{c -}{hline 5}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. list ID S MARRIED mar_s_lin mar_s_prob if subsample==1
+{txt}
+     {c TLC}{hline 6}{c -}{hline 4}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c TRC}
+     {c |} {res}  ID    S   MARRIED   mar_s_~n   mar_s_~b {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 4}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c RT}
+  1. {c |} {res}4789   17         1   .4359892   .4360877 {txt}{c |}
+  2. {c |} {res}4204   16         0    .422943   .4227615 {txt}{c |}
+  3. {c |} {res}5425   18         1   .4490353   .4494869 {txt}{c |}
+  4. {c |} {res}2524   16         0    .422943   .4227615 {txt}{c |}
+  5. {c |} {res}6397   13         0   .3838046   .3833676 {txt}{c |}
+     {c BLC}{hline 6}{c -}{hline 4}{c -}{hline 9}{c -}{hline 10}{c -}{hline 10}{c BRC}
+
+{com}. 
+. 
+. * Linear probability model Age
+. gen error1s = MARRIED - mar_age_lin if subsample==1
+{txt}(495 missing values generated)
+
+{com}. gen square_error1s = error1s^2
+{txt}(495 missing values generated)
+
+{com}. egen mse1s = mean(square_error1s)
+{txt}
+{com}. scalar rmse1s = sqrt(mse1s)
+{txt}
+{com}. display rmse1s
+{res}.43814897
+{txt}
+{com}. 
+. * Probit model Age 
+. gen error2s = MARRIED - mar_age_prob if subsample==1
+{txt}(495 missing values generated)
+
+{com}. gen square_error2s = error2s^2
+{txt}(495 missing values generated)
+
+{com}. egen mse2s = mean(square_error2s)
+{txt}
+{com}. scalar rmse2s = sqrt(mse2s)
+{txt}
+{com}. display rmse2s
+{res}.43808903
+{txt}
+{com}. 
+. * Linear probability model S
+. gen error3s = MARRIED - mar_s_lin if subsample==1
+{txt}(495 missing values generated)
+
+{com}. gen square_error3s = error3s^2
+{txt}(495 missing values generated)
+
+{com}. egen mse3s = mean(square_error3s)
+{txt}
+{com}. scalar rmse3s = sqrt(mse3s)
+{txt}
+{com}. display rmse3s
+{res}.47470787
+{txt}
+{com}. 
+. * Probit model S
+. gen error4s = MARRIED - mar_s_prob if subsample==1
+{txt}(495 missing values generated)
+
+{com}. gen square_error4s = error4s^2
+{txt}(495 missing values generated)
+
+{com}. egen mse4s = mean(square_error4s)
+{txt}
+{com}. scalar rmse4s = sqrt(mse4s)
+{txt}
+{com}. display rmse4s
+{res}.47444433
+{txt}
+{com}. 
+. *Compare 
+. * Linear probability model Age
+. display rmse1s
+{res}.43814897
+{txt}
+{com}. * Probit model Age 
+. display rmse2s
+{res}.43808903
+{txt}
+{com}. * Linear probability model S
+. display rmse3s
+{res}.47470787
+{txt}
+{com}. * Probit model S
+. display rmse4s
+{res}.47444433
+{txt}
+{com}. 
+. *1.6
+. * Linear probability model Age
+. gen error1 = MARRIED - mar_age_lin
+{txt}
+{com}. gen square_error1 = error1^2
+{txt}
+{com}. egen mse1 = mean(square_error1)
+{txt}
+{com}. scalar rmse1 = sqrt(mse1)
+{txt}
+{com}. display rmse1
+{res}.48491913
+{txt}
+{com}. 
+. * Probit model Age 
+. gen error2 = MARRIED - mar_age_prob
+{txt}
+{com}. gen square_error2 = error2^2
+{txt}
+{com}. egen mse2 = mean(square_error2)
+{txt}
+{com}. scalar rmse2 = sqrt(mse2)
+{txt}
+{com}. display rmse2
+{res}.48485471
+{txt}
+{com}. 
+. * Linear probability model S
+. gen error3 = MARRIED - mar_s_lin
+{txt}
+{com}. gen square_error3 = error3^2
+{txt}
+{com}. egen mse3 = mean(square_error3)
+{txt}
+{com}. scalar rmse3 = sqrt(mse3)
+{txt}
+{com}. display rmse3
+{res}.4893582
+{txt}
+{com}. 
+. * Probit model S
+. gen error4 = MARRIED - mar_s_prob
+{txt}
+{com}. gen square_error4 = error4^2
+{txt}
+{com}. egen mse4 = mean(square_error4)
+{txt}
+{com}. scalar rmse4 = sqrt(mse4)
+{txt}
+{com}. display rmse4
+{res}.48936767
+{txt}
+{com}. 
+. *Compare 
+. display rmse1
+{res}.48491913
+{txt}
+{com}. display rmse2
+{res}.48485471
+{txt}
+{com}. display rmse3
+{res}.4893582
+{txt}
+{com}. display rmse4
+{res}.48936767
+{txt}
+{com}. 
+. *1.7 No Code
+. 
+. *1.8
+. * Linear prediction model AGE 
+. regress MARRIED AGE, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}    11.83
+                                                {txt}Prob > F          = {res}    0.0006
+                                                {txt}R-squared         = {res}    0.0234
+                                                {txt}Root MSE          =    {res} .48589
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.206855{col 26}{space 2}  .467777{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 54}{space 4}-2.125914{col 67}{space 3}-.2877949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict mar_age_lin_pr, xb
+{txt}
+{com}. tabstat mar_age_lin_pr, statistics(mean) by(AGE)
+
+{txt}Summary for variables: mar_age_lin_pr
+Group variable: AGE 
+
+{ralign 8:AGE} {...}
+{c |}      Mean
+{hline 9}{c +}{hline 10}
+{ralign 8:27} {...}
+{c |}{...}
+ {res} .2976796
+{txt}{ralign 8:28} {...}
+{c |}{...}
+ {res} .3534031
+{txt}{ralign 8:29} {...}
+{c |}{...}
+ {res} .4091265
+{txt}{ralign 8:30} {...}
+{c |}{...}
+ {res}   .46485
+{txt}{ralign 8:31} {...}
+{c |}{...}
+ {res} .5205736
+{txt}{hline 9}{c +}{hline 10}
+{ralign 8:Total} {...}
+{c |}{...}
+ {res}     .404
+{txt}{hline 9}{c BT}{hline 10}
+
+{com}. 
+. * Probit prediction model AGE 
+. probit MARRIED AGE, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-331.42563}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-331.42451}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-331.42451}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:11.38}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0007}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-331.42451}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0174}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .1449392{col 26}{space 2} .0429565{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0607461{col 67}{space 3} .2291323
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-4.437381{col 26}{space 2} 1.245308{col 37}{space 1}   -3.56{col 46}{space 3}0.000{col 54}{space 4}-6.878139{col 67}{space 3}-1.996623
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict mar_age_prob_pr, pr
+{txt}
+{com}. tabstat mar_age_prob_pr, statistics(mean) by(AGE)
+
+{txt}Summary for variables: mar_age_prob_pr
+Group variable: AGE 
+
+{ralign 8:AGE} {...}
+{c |}      Mean
+{hline 9}{c +}{hline 10}
+{ralign 8:27} {...}
+{c |}{...}
+ {res} .3001313
+{txt}{ralign 8:28} {...}
+{c |}{...}
+ {res} .3523128
+{txt}{ralign 8:29} {...}
+{c |}{...}
+ {res} .4074364
+{txt}{ralign 8:30} {...}
+{c |}{...}
+ {res} .4644593
+{txt}{ralign 8:31} {...}
+{c |}{...}
+ {res} .5222231
+{txt}{hline 9}{c +}{hline 10}
+{ralign 8:Total} {...}
+{c |}{...}
+ {res} .4040465
+{txt}{hline 9}{c BT}{hline 10}
+
+{com}. 
+. * Linear prediction model S 
+. regress MARRIED S, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}     2.82
+                                                {txt}Prob > F          = {res}    0.0938
+                                                {txt}R-squared         = {res}    0.0055
+                                                {txt}Root MSE          =    {res} .49034
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2} .0130462{col 26}{space 2} .0077708{col 37}{space 1}    1.68{col 46}{space 3}0.094{col 54}{space 4}-.0022214{col 67}{space 3} .0283137
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2142045{col 26}{space 2} .1144794{col 37}{space 1}    1.87{col 46}{space 3}0.062{col 54}{space 4}-.0107175{col 67}{space 3} .4391266
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. predict mar_s_lin_pr, xb
+{txt}
+{com}. tabstat mar_s_lin_pr, statistics(mean) by(AGE)
+
+{txt}Summary for variables: mar_s_lin_pr
+Group variable: AGE 
+
+{ralign 8:AGE} {...}
+{c |}      Mean
+{hline 9}{c +}{hline 10}
+{ralign 8:27} {...}
+{c |}{...}
+ {res} .4006878
+{txt}{ralign 8:28} {...}
+{c |}{...}
+ {res} .4006166
+{txt}{ralign 8:29} {...}
+{c |}{...}
+ {res} .4078651
+{txt}{ralign 8:30} {...}
+{c |}{...}
+ {res}  .406477
+{txt}{ralign 8:31} {...}
+{c |}{...}
+ {res} .4032021
+{txt}{hline 9}{c +}{hline 10}
+{ralign 8:Total} {...}
+{c |}{...}
+ {res}     .404
+{txt}{hline 9}{c BT}{hline 10}
+
+{com}. 
+. * Probit prediction model S
+. probit MARRIED S, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-335.93006}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-335.92997}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-335.92997}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:2.77}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0960}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-335.92997}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0041}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2}  .033938{col 26}{space 2} .0203872{col 37}{space 1}    1.66{col 46}{space 3}0.096{col 54}{space 4}-.0060201{col 67}{space 3} .0738961
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.7378423{col 26}{space 2} .3028775{col 37}{space 1}   -2.44{col 46}{space 3}0.015{col 54}{space 4}-1.331471{col 67}{space 3}-.1442133
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict mar_s_prob_pr, pr
+{txt}
+{com}. tabstat mar_s_prob_pr, statistics(mean) by(AGE)
+
+{txt}Summary for variables: mar_s_prob_pr
+Group variable: AGE 
+
+{ralign 8:AGE} {...}
+{c |}      Mean
+{hline 9}{c +}{hline 10}
+{ralign 8:27} {...}
+{c |}{...}
+ {res} .4006203
+{txt}{ralign 8:28} {...}
+{c |}{...}
+ {res} .4006049
+{txt}{ralign 8:29} {...}
+{c |}{...}
+ {res} .4079063
+{txt}{ralign 8:30} {...}
+{c |}{...}
+ {res}  .406434
+{txt}{ralign 8:31} {...}
+{c |}{...}
+ {res} .4032677
+{txt}{hline 9}{c +}{hline 10}
+{ralign 8:Total} {...}
+{c |}{...}
+ {res} .4039951
+{txt}{hline 9}{c BT}{hline 10}
+
+{com}. 
+. *1.9
+. *Marginal Effect Linear
+. regress MARRIED AGE, robust
+
+{txt}Linear regression                               Number of obs     = {res}       500
+                                                {txt}F(1, 498)         =  {res}    11.83
+                                                {txt}Prob > F          = {res}    0.0006
+                                                {txt}R-squared         = {res}    0.0234
+                                                {txt}Root MSE          =    {res} .48589
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.206855{col 26}{space 2}  .467777{col 37}{space 1}   -2.58{col 46}{space 3}0.010{col 54}{space 4}-2.125914{col 67}{space 3}-.2877949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. margins, dydx(AGE) at(AGE = (27 29 31))
+{res}
+{txt}{col 1}Conditional marginal effects{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:500}
+{txt}{col 1}Model VCE: {res:Robust}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2col:dy/dx wrt:}{res:AGE}{p_end}
+{p2colreset}{...}
+{lalign 7:1._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:27}}
+{lalign 7:2._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:29}}
+{lalign 7:3._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:31}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}AGE          {txt}{c |}
+{space 9}_at {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .0557235{col 26}{space 2}  .016204{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0238869{col 67}{space 3} .0875601
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. *Marginal Effect Probit
+. probit MARRIED AGE, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-331.42563}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-331.42451}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-331.42451}  
+{res}
+{txt}{col 1}Probit regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:1})}{col 70} = {res}{ralign 6:11.38}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0007}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-331.42451}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0174}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .1449392{col 26}{space 2} .0429565{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0607461{col 67}{space 3} .2291323
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-4.437381{col 26}{space 2} 1.245308{col 37}{space 1}   -3.56{col 46}{space 3}0.000{col 54}{space 4}-6.878139{col 67}{space 3}-1.996623
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. margins, dydx(AGE) at(AGE = (27 29 31))
+{res}
+{txt}{col 1}Conditional marginal effects{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:500}
+{txt}{col 1}Model VCE: {res:Robust}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(MARRIED), predict()}{p_end}
+{p2col:dy/dx wrt:}{res:AGE}{p_end}
+{p2colreset}{...}
+{lalign 7:1._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:27}}
+{lalign 7:2._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:29}}
+{lalign 7:3._at: }{space 0}{lalign 3:AGE} = {res:{ralign 2:31}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      dy/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}AGE          {txt}{c |}
+{space 9}_at {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .0504043{col 26}{space 2} .0128045{col 37}{space 1}    3.94{col 46}{space 3}0.000{col 54}{space 4} .0253079{col 67}{space 3} .0755006
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} .0562589{col 26}{space 2} .0167136{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0235008{col 67}{space 3}  .089017
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} .0577326{col 26}{space 2} .0168295{col 37}{space 1}    3.43{col 46}{space 3}0.001{col 54}{space 4} .0247474{col 67}{space 3} .0907179
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. *2.1
+. *Logit Model
+. logit MARRIED AGE S HEIGHT EARNINGS URBAN, robust
+
+{res}{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-337.30012}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-323.24116}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-323.20152}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-323.20151}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 57}{lalign 13:Wald chi2({res:5})}{col 70} = {res}{ralign 6:25.66}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0001}
+{txt}{col 1}{lalign 20:Log pseudolikelihood}{col 21} = {res}{ralign 10:-323.20151}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0418}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}     MARRIED{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}AGE {c |}{col 14}{res}{space 2} .2290208{col 26}{space 2} .0710142{col 37}{space 1}    3.22{col 46}{space 3}0.001{col 54}{space 4} .0898355{col 67}{space 3} .3682061
+{txt}{space 11}S {c |}{col 14}{res}{space 2} .0573351{col 26}{space 2} .0359714{col 37}{space 1}    1.59{col 46}{space 3}0.111{col 54}{space 4}-.0131675{col 67}{space 3} .1278377
+{txt}{space 6}HEIGHT {c |}{col 14}{res}{space 2} .0257718{col 26}{space 2} .0235736{col 37}{space 1}    1.09{col 46}{space 3}0.274{col 54}{space 4}-.0204316{col 67}{space 3} .0719753
+{txt}{space 4}EARNINGS {c |}{col 14}{res}{space 2} .0133591{col 26}{space 2} .0092017{col 37}{space 1}    1.45{col 46}{space 3}0.147{col 54}{space 4} -.004676{col 67}{space 3} .0313941
+{txt}{space 7}URBAN {c |}{col 14}{res}{space 2}-.6720038{col 26}{space 2} .2165565{col 37}{space 1}   -3.10{col 46}{space 3}0.002{col 54}{space 4}-1.096447{col 67}{space 3}-.2475609
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-9.357966{col 26}{space 2} 2.773062{col 37}{space 1}   -3.37{col 46}{space 3}0.001{col 54}{space 4}-14.79307{col 67}{space 3}-3.922864
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict Logit 
+{txt}(option {bf:pr} assumed; Pr(MARRIED))
+
+{com}. esttab
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                  MARRIED   
+{txt}{hline 28}
+{res}MARRIED                     {txt}
+{txt}AGE         {res}        0.229** {txt}
+            {res} {ralign 12:{txt:(}3.22{txt:)}}   {txt}
+
+{txt}S           {res}       0.0573   {txt}
+            {res} {ralign 12:{txt:(}1.59{txt:)}}   {txt}
+
+{txt}HEIGHT      {res}       0.0258   {txt}
+            {res} {ralign 12:{txt:(}1.09{txt:)}}   {txt}
+
+{txt}EARNINGS    {res}       0.0134   {txt}
+            {res} {ralign 12:{txt:(}1.45{txt:)}}   {txt}
+
+{txt}URBAN       {res}       -0.672** {txt}
+            {res} {ralign 12:{txt:(}-3.10{txt:)}}   {txt}
+
+{txt}_cons       {res}       -9.358***{txt}
+            {res} {ralign 12:{txt:(}-3.37{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}N           {res}          500   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. *2.2 No Code
+. 
+. *2.3
+. *Caculate MSE
+. gen errorL = MARRIED - Logit
+{txt}
+{com}. gen square_errorL = errorL^2
+{txt}
+{com}. egen mseL = mean(square_errorL)
+{txt}
+{com}. scalar rmseL = sqrt(mseL)
+{txt}
+{com}. display rmseL
+{res}.47667635
+{txt}
+{com}. 
+. *Compare
+. display rmseL
+{res}.47667635
+{txt}
+{com}. display rmse1
+{res}.48491913
+{txt}
+{com}. display rmse2
+{res}.48485471
+{txt}
+{com}. display rmse3
+{res}.4893582
+{txt}
+{com}. display rmse4
+{res}.48936767
+{txt}
+{com}. 
+. *2.4
+. 
+. mfx compute, dydx at (27,16,66,18,0)
+
+{txt}Marginal effects after logit
+      y  = Pr(MARRIED) (predict)
+         = {res} .42173904
+{txt}{hline 9}{c TT}{hline 68}
+variable {c |}{col 17}dy/dx{col 26}Std. err.{col 40}z{col 45}P>|z|{col 52}[    95% C.I.   ]{col 75}X
+{hline 9}{c +}{hline 68}
+     AGE {c |}  {res} .0558525      .01616    3.46   0.001   .024185   .08752        27
+       {txt}S {c |}  {res} .0139826      .00896    1.56   0.118  -.003572  .031537        16
+  {txt}HEIGHT {c |}  {res} .0062851      .00571    1.10   0.271  -.004899  .017469        66
+{txt}EARNINGS {c |}  {res} .0032579      .00223    1.46   0.145  -.001119  .007635        18
+   {txt}URBAN*{c |}  {res} -.150361       .0512   -2.94   0.003  -.250714 -.050008         0
+{txt}{hline 9}{c BT}{hline 68}
+(*) dy/dx is for discrete change of dummy variable from 0 to 1
+
+{com}. mfx compute, dydx at (27,16,66,18,1)
+
+{txt}Marginal effects after logit
+      y  = Pr(MARRIED) (predict)
+         = {res} .27137801
+{txt}{hline 9}{c TT}{hline 68}
+variable {c |}{col 17}dy/dx{col 26}Std. err.{col 40}z{col 45}P>|z|{col 52}[    95% C.I.   ]{col 75}X
+{hline 9}{c +}{hline 68}
+     AGE {c |}  {res} .0452847      .01131    4.00   0.000   .023112  .067458        27
+       {txt}S {c |}  {res}  .011337      .00736    1.54   0.123  -.003084  .025758        16
+  {txt}HEIGHT {c |}  {res} .0050959      .00455    1.12   0.263  -.003824  .014016        66
+{txt}EARNINGS {c |}  {res} .0026415      .00182    1.45   0.147  -.000925  .006208        18
+   {txt}URBAN*{c |}  {res} -.150361       .0512   -2.94   0.003  -.250714 -.050008         1
+{txt}{hline 9}{c BT}{hline 68}
+(*) dy/dx is for discrete change of dummy variable from 0 to 1
+
+{com}. 
+. 
+. 
+. 
+. 
+. *3.1 
+. *generate needed variables 
+. gen lny = ln(EARNINGS)
+{txt}
+{com}. gen S_URB = S*URBAN
+{txt}
+{com}. gen EXP2 = EXP^2
+{txt}
+{com}. 
+. *tobit lny S S_URB EXP EXP2 
+. tobit lny S S_URB EXP EXP2, ll(log(2))
+{res}{txt}
+Refining starting values:
+
+Grid node 0:{space 3}log likelihood = {res:-374.39583}
+
+Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-374.39583}  
+Iteration 1:{space 3}log likelihood = {res:-374.39583}  
+{res}
+{txt}{col 1}Tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:500}
+{txt}{col 1}Limits: Lower = {ralign 4:{res:0.69}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:0}
+{txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
+
+{txt}{col 53}{lalign 17:LR chi2({res:4})}{col 70} = {res}{ralign 6:81.32}
+{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-374.39583}{txt}{col 53}{lalign 17:Pseudo R2}{col 70} = {res}{ralign 6:0.0980}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         lny{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2} .0964689{col 26}{space 2} .0107491{col 37}{space 1}    8.97{col 46}{space 3}0.000{col 54}{space 4} .0753496{col 67}{space 3} .1175882
+{txt}{space 7}S_URB {c |}{col 14}{res}{space 2}-.0026287{col 26}{space 2} .0037242{col 37}{space 1}   -0.71{col 46}{space 3}0.481{col 54}{space 4}-.0099459{col 67}{space 3} .0046885
+{txt}{space 9}EXP {c |}{col 14}{res}{space 2} .0022166{col 26}{space 2} .0343286{col 37}{space 1}    0.06{col 46}{space 3}0.949{col 54}{space 4}-.0652308{col 67}{space 3}  .069664
+{txt}{space 8}EXP2 {c |}{col 14}{res}{space 2}  .003259{col 26}{space 2} .0023837{col 37}{space 1}    1.37{col 46}{space 3}0.172{col 54}{space 4}-.0014244{col 67}{space 3} .0079424
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.202117{col 26}{space 2} .2170589{col 37}{space 1}    5.54{col 46}{space 3}0.000{col 54}{space 4} .7756492{col 67}{space 3} 1.628586
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}var(e.lny){c |}{col 14}{res}{space 2} .2617688{col 26}{space 2} .0165557{col 54}{space 4} .2311806{col 67}{space 3} .2964041
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. predict t1
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. 
+. 
+. 
+. eststo clear
+{txt}
+{com}. eststo model_l: tobit lny S S_URB EXP EXP2
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-374.39583}  
+Iteration 1:{space 3}log likelihood = {res:-374.39583}  
+{res}
+{txt}{col 1}Tobit regression{col 53}{lalign 17:Number of obs}{col 70} = {res}{ralign 6:500}
+{txt}{col 53}{ralign 17:Uncensored}{col 70} = {res}{ralign 6:500}
+{txt}{col 1}Limits: Lower = {ralign 4:{txt:-inf}}{col 53}{ralign 17:Left-censored}{col 70} = {res}{ralign 6:0}
+{txt}{col 1}        Upper = {ralign 4:{txt:+inf}}{col 53}{ralign 17:   Right-censored}{col 70} = {res}{ralign 6:0}
+
+{txt}{col 53}{lalign 17:LR chi2({res:4})}{col 70} = {res}{ralign 6:81.32}
+{txt}{col 53}{lalign 17:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-374.39583}{txt}{col 53}{lalign 17:Pseudo R2}{col 70} = {res}{ralign 6:0.0980}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         lny{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}S {c |}{col 14}{res}{space 2} .0964689{col 26}{space 2} .0107491{col 37}{space 1}    8.97{col 46}{space 3}0.000{col 54}{space 4} .0753496{col 67}{space 3} .1175882
+{txt}{space 7}S_URB {c |}{col 14}{res}{space 2}-.0026287{col 26}{space 2} .0037242{col 37}{space 1}   -0.71{col 46}{space 3}0.481{col 54}{space 4}-.0099459{col 67}{space 3} .0046885
+{txt}{space 9}EXP {c |}{col 14}{res}{space 2} .0022166{col 26}{space 2} .0343286{col 37}{space 1}    0.06{col 46}{space 3}0.949{col 54}{space 4}-.0652308{col 67}{space 3}  .069664
+{txt}{space 8}EXP2 {c |}{col 14}{res}{space 2}  .003259{col 26}{space 2} .0023837{col 37}{space 1}    1.37{col 46}{space 3}0.172{col 54}{space 4}-.0014244{col 67}{space 3} .0079424
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.202117{col 26}{space 2} .2170589{col 37}{space 1}    5.54{col 46}{space 3}0.000{col 54}{space 4} .7756492{col 67}{space 3} 1.628586
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}var(e.lny){c |}{col 14}{res}{space 2} .2617688{col 26}{space 2} .0165557{col 54}{space 4} .2311806{col 67}{space 3} .2964041
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. esttab model_l
+{res}
+{txt}{hline 28}
+{txt}                      (1)   
+{txt}                      lny   
+{txt}{hline 28}
+{res}lny                         {txt}
+{txt}S           {res}       0.0965***{txt}
+            {res} {ralign 12:{txt:(}8.97{txt:)}}   {txt}
+
+{txt}S_URB       {res}     -0.00263   {txt}
+            {res} {ralign 12:{txt:(}-0.71{txt:)}}   {txt}
+
+{txt}EXP         {res}      0.00222   {txt}
+            {res} {ralign 12:{txt:(}0.06{txt:)}}   {txt}
+
+{txt}EXP2        {res}      0.00326   {txt}
+            {res} {ralign 12:{txt:(}1.37{txt:)}}   {txt}
+
+{txt}_cons       {res}        1.202***{txt}
+            {res} {ralign 12:{txt:(}5.54{txt:)}}   {txt}
+{hline 28}
+{res}/                           {txt}
+{txt}var(e.lny)  {res}        0.262***{txt}
+            {res} {ralign 12:{txt:(}15.81{txt:)}}   {txt}
+{txt}{hline 28}
+{txt}N           {res}          500   {txt}
+{txt}{hline 28}
+{txt}t statistics in parentheses
+{txt}* p<0.05, ** p<0.01, *** p<0.001
+
+{com}. 
+. 
+. esttab model_l using model_l.rtf, replace ///
+> se onecell width(\hsize) ///
+> addnote() ///
+> label title(Estimation Reslt of Linear Model)
+{res}{txt}(output written to {browse  `"model_l.rtf"'})
+
+{com}. 
+. *3.2 No Code 
+. 
+. 
+. 
+. 
+. 
+. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/kylenabors/Library/CloudStorage/Dropbox/UC Davis/Winter 2023/ECN 256B/Homework/Homework 1/Homework 1 Log.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}30 Jan 2023, 12:32:32
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
